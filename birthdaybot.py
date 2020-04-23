@@ -114,4 +114,4 @@ with open('birthdays.json', 'r+') as f:
 
     called_once_a_day.start()
     
-    # client.run(token)
+    client.run(token)
