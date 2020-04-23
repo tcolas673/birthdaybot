@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands, tasks
 from datetime import datetime
@@ -7,10 +8,10 @@ with open('birthdays.json', 'r+') as f:
     birthdays = json.load(f)
 
 
-    client = commands.Bot(command_prefix = 'b!')
+    client = commands.Bot(command_prefix = 'b!') 
 
-    target_channel_id = 620323093872771085 
-
+    target_channel_id = os.environ.get('ID')
+    token = os.environ.get('TOKEN')
 
     @client.event
     async def on_ready():
@@ -23,7 +24,7 @@ with open('birthdays.json', 'r+') as f:
         datem = date.strftime('%y/%m/%d')
         if datem[3:] in birthdays:
             name = birthdays[datem[3:]]
-            channel = client.get_channel(516852475970715665)
+            channel = client.get_channel(target_channel_id)
             msg = 'Happy Birthday, %s!' % name
             await channel.send(msg)
 
@@ -113,4 +114,4 @@ with open('birthdays.json', 'r+') as f:
 
     called_once_a_day.start()
     
-    client.run('NzAxNDEyMTU1ODUzMTExMzE3.XpxHcA.2fyqklYyvXEc-_bOmrSCujDY0pw')
+    # client.run(token)
