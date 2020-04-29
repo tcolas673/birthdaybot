@@ -102,6 +102,8 @@ with open('birthdays.json', 'r+') as f:
                 json.dump(birthdays, f)
                 await ctx.send('Birthday updated')
                 break
+            else:
+                continue
 
     # delete birthday function
     @client.command()
@@ -111,6 +113,8 @@ with open('birthdays.json', 'r+') as f:
                 birthdays.pop(birthday, None)
                 await ctx.send('Birthday deleted')
                 break
+            else:
+                continue
 
     called_once_a_day.start()
     
