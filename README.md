@@ -23,7 +23,7 @@ python3 -m pip install -U discord.py
 py -3 -m pip install -U discord.py
 ```
 4. Invite the bot to your server [(more instructions here)](https://stackoverflow.com/questions/37689289/how-to-join-a-server) and input your Discord bot key in config.json
-5. type python3 birthdaybot.py in your terminal
+5. Type python3 birthdaybot.py in your terminal
 
 ### Using birthdayBot!
 
@@ -31,15 +31,11 @@ Once you have the bot up and running, you can type b!add to add someone's name a
 
 ###### b!add
  ```
- b!add name mm/dd will add someone's name and birthday to the system.
+ b!add name mm/dd wills add someone's name and birthday to the system.
 
 Example: 
 b!add test 04/24
 ```
-<p align="center">
-  <img src="">
-</p>
-
 
 ###### b!all
  ```
@@ -48,9 +44,6 @@ b!add test 04/24
 Example: 
 b!all
 ```
-<p align="center">
-  <img src="">
-</p>
 
 ###### b!delete
  ```
@@ -59,9 +52,6 @@ b!all
 Example: 
 b!delete test
 ```
-<p align="center">
-  <img src="">
-</p>
 
 ###### b!edit
  ```
@@ -70,9 +60,6 @@ b!edit name will allow you to edit a birthday in the system with that correspond
 Example: 
 b!edit test 05/24
 ```
-<p align="center">
-  <img src="">
-</p>
 
 ###### b!month
  ```
@@ -81,9 +68,6 @@ b!month monthoftheyear will allow you to view all birthdays for that month.
 Example: 
 b!month may 
 ```
-<p align="center">
-  <img src="">
-</p>
 
 ###### b!today
  ```
@@ -92,9 +76,6 @@ b!month may
 Example: 
 b!today 
 ```
-<p align="center">
-  <img src="">
-</p>
 
 ###### b!thisMonth
  ```
@@ -103,19 +84,7 @@ b!thisMonth will allow you to view all birthdays for the current month.
 Example: 
 b!thisMonth
 ```
-<p align="center">
-  <img src="">
-</p>
-
-## Built With
-
-* [Node.js](https://nodejs.org/en/) - Javascript runtime
-* [Request](https://www.npmjs.com/package/request) - HTTP client for node.js
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
-## Acknowledgments
-
-* Testers on Discord server (special thanks to Akira, Asano, Christopher, Nodar, Trevor, and Yui)
