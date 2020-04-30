@@ -56,6 +56,8 @@ with open('birthdays.json', 'r+') as f:
                 name = birthdays[birthday]
                 msg = name + ' ' + birthday
                 await ctx.send(msg)
+            else:
+                continue
         if found == False:
             msg = 'No birthdays this month'
             await ctx.send(msg)
@@ -82,6 +84,8 @@ with open('birthdays.json', 'r+') as f:
         for birthday in birthdays:
             if name == birthdays[birthday]:
                 await ctx.send(birthday)
+            else:
+                continue
 
     # add birthdays to dictionary
     @client.command()
