@@ -29,7 +29,7 @@ py -3 -m pip install -U discord.py
 
 Once you have the bot up and running, you can type b!add to add someone's name and birthday.
 
-###### b!add
+#### b!add
  ```
  b!add name mm/dd wills add someone's name and birthday to the system.
 
@@ -37,7 +37,7 @@ Example:
 b!add test 04/24
 ```
 
-###### b!all
+#### b!all
  ```
  b!all will list all birthdays in the system.
 
@@ -45,7 +45,7 @@ Example:
 b!all
 ```
 
-###### b!delete
+#### b!delete
  ```
  b!delete name will remove someone's birthday from the system.
 
@@ -53,7 +53,7 @@ Example:
 b!delete test
 ```
 
-###### b!edit
+#### b!edit
  ```
 b!edit name will allow you to edit a birthday in the system with that corresponding name.
 
@@ -61,7 +61,7 @@ Example:
 b!edit test 05/24
 ```
 
-###### b!month
+#### b!month
  ```
 b!month monthoftheyear will allow you to view all birthdays for that month.
 
@@ -69,7 +69,7 @@ Example:
 b!month may 
 ```
 
-###### b!today
+#### b!today
  ```
  b!today will print a happy birthday message for birthdays on that day if none, it wil print nothing.
 
@@ -77,7 +77,7 @@ Example:
 b!today 
 ```
 
-###### b!thisMonth
+#### b!thisMonth
  ```
 b!thisMonth will allow you to view all birthdays for the current month.
 
