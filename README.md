@@ -27,7 +27,7 @@ py -3 -m pip install -U discord.py
 
 ### Using birthdayBot!
 
-Once you have the bot up and running, you can type b!add to add someone's name and birthday.
+Once you have the bot up and running, you can type use the following commands to add,edit,delete, or view someone's birthday.
 
 #### b!add
  ```
@@ -36,6 +36,9 @@ Once you have the bot up and running, you can type b!add to add someone's name a
 Example: 
 b!add test 04/24
 ```
+<p align="center">
+  <img src="images/add.png">
+</p>
 
 #### b!all
  ```
@@ -52,6 +55,9 @@ b!all
 Example: 
 b!delete test
 ```
+<p align="center">
+  <img src="images/delete.png">
+</p>
 
 #### b!edit
  ```
@@ -60,6 +66,9 @@ b!edit name will allow you to edit a birthday in the system with that correspond
 Example: 
 b!edit test 05/24
 ```
+<p align="center">
+  <img src="images/edit.png">
+</p>
 
 #### b!month
  ```
@@ -76,6 +85,9 @@ b!month may
 Example: 
 b!today 
 ```
+<p align="center">
+  <img src="images/today.png">
+</p>
 
 #### b!thisMonth
  ```
