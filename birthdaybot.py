@@ -17,7 +17,7 @@ with open('birthdays.json', 'r+') as f:
     async def on_ready():
         print('Bot is ready.')
 
-    @tasks.loop(hours=24)
+    @tasks.loop(seconds=24)
     async def called_once_a_day():
         await client.wait_until_ready()
         date = datetime.date(datetime.now())
