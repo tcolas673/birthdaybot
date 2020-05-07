@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 * Python
 * Pip
-* Discord 
+* Discord.py 
 
 ### Installing
 1. ```git clone https://github.com/tcolas673/birthdaybot.git ```
@@ -31,7 +31,7 @@ Once you have the bot up and running, you can type use the following commands to
 
 #### b!add
  ```
- b!add name mm/dd wills add someone's name and birthday to the system.
+ b!add name mm/dd will add someone's name and birthday to the system.
 
 Example: 
 b!add test 04/24
