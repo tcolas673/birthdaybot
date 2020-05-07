@@ -37,7 +37,7 @@ Example:
 b!add test 04/24
 ```
 <p align="center">
-  <img src="images/add.png" width="100" height="100">
+  <img src="images/add.png" height="100">
 </p>
 
 #### b!all
