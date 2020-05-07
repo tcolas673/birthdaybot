@@ -26,6 +26,7 @@ with open('birthdays.json', 'r+') as f:
             name = birthdays[datem[3:]]
             channel = client.get_channel(target_channel_id)
             msg = 'Happy Birthday, %s!' % name
+            print(msg)
             await channel.send(msg)
 
     @client.command()
