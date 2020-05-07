@@ -27,6 +27,7 @@ with open('birthdays.json', 'r+') as f:
             channel = client.get_channel(target_channel_id)
             msg = 'Happy Birthday, %s!' % name
             print(msg)
+            print(channel)
             await channel.send(msg)
 
     @client.command()
@@ -120,7 +121,8 @@ with open('birthdays.json', 'r+') as f:
                 break
             else:
                 continue
-
-    called_once_a_day.start()
+    
+    client.loop.create_task(called_once_a_day())
+    # called_once_a_day.start()
     
     client.run(token)
