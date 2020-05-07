@@ -37,7 +37,7 @@ Example:
 b!add test 04/24
 ```
 <p align="center">
-  <img src="images/add.png">
+  <img src="images/add.png" width="100" height="100">
 </p>
 
 #### b!all
@@ -56,7 +56,7 @@ Example:
 b!delete test
 ```
 <p align="center">
-  <img src="images/delete.png">
+  <img src="images/delete.png" width="100" height="100">
 </p>
 
 #### b!edit
@@ -67,7 +67,7 @@ Example:
 b!edit test 05/24
 ```
 <p align="center">
-  <img src="images/edit.png">
+  <img src="images/edit.png" width="100" height="100">
 </p>
 
 #### b!month
@@ -86,7 +86,7 @@ Example:
 b!today 
 ```
 <p align="center">
-  <img src="images/today.png">
+  <img src="images/today.png" width="100" height="100">
 </p>
 
 #### b!thisMonth
