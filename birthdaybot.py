@@ -27,7 +27,8 @@ with open('birthdays.json', 'r+') as f:
             channel = client.get_channel(target_channel_id)
             msg = 'Happy Birthday, %s!' % name
             print(msg)
-            await print(channel)
+            print(channel)
+            await print('done')
 
     @client.command()
     async def all(ctx):
