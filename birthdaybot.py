@@ -10,14 +10,14 @@ with open('birthdays.json', 'r+') as f:
 
     client = commands.Bot(command_prefix = 'b!') 
 
-    target_channel_id = os.environ.get('ID')
+    target_channel_id = int(os.environ.get('ID'))
     token = os.environ.get('TOKEN')
 
     @client.event
     async def on_ready():
         print('Bot is ready.')
 
-    @tasks.loop(seconds=24.0)
+    @tasks.loop(hours=24)
     async def called_once_a_day():
         await client.wait_until_ready()
         date = datetime.date(datetime.now())
@@ -27,8 +27,7 @@ with open('birthdays.json', 'r+') as f:
             channel = client.get_channel(target_channel_id)
             msg = 'Happy Birthday, %s!' % name
             print(msg)
-            print(channel)
-            await print('done')
+            await channel.send(msg)
 
     @client.command()
     async def all(ctx):
