@@ -121,8 +121,7 @@ with open('birthdays.json', 'r+') as f:
                 break
             else:
                 continue
-    
-    client.loop.create_task(called_once_a_day())
-    # called_once_a_day.start()
+
+    called_once_a_day.start()
     
     client.run(token)
