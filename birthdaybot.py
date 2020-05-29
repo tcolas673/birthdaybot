@@ -1,126 +1,206 @@
 import os
+import db
+import json
 import discord
+from dotenv import load_dotenv
 from discord.ext import commands, tasks
 from datetime import datetime
 
-import json
-with open('birthdays.json', 'r+') as f:
-    birthdays = json.load(f)
+
+client = commands.Bot(command_prefix = 'b!') 
+
+load_dotenv()
+
+token = os.getenv('TOKEN')
+birthdays = db.connect()
 
 
-    client = commands.Bot(command_prefix = 'b!') 
+@client.event
+async def on_ready():
+    print('Bot is ready.')
 
-    target_channel_id = int(os.environ.get('ID'))
-    token = os.environ.get('TOKEN')
+@tasks.loop(hours=24)
+async def called_once_a_day():
+    await client.wait_until_ready()
+    date = datetime.date(datetime.now())
+    datem = date.strftime('%y/%m/%d')
+    results = birthdays.find({"birthday":datem[3:]})
+    for birthday in results:
+        name = birthday["name"]
+        channel = client.get_channel(birthday["cid"])
+        msg = 'Happy Birthday, %s!' % name
+        print(msg)
+        await channel.send(msg)
 
-    @client.event
-    async def on_ready():
-        print('Bot is ready.')
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
+        print(error, type(error))
+        await ctx.send(error)
+    elif isinstance(error, discord.ext.commands.errors.CommandNotFound):
+        print(error, type(error))
+        await ctx.send("That's not a command. Take a look at commands https://github.com/tcolas673/birthdaybot")
+    else:
+        print(error, type(error))
+        await ctx.send("Whoops! Looks liks something's amiss")
 
-    @tasks.loop(hours=24)
-    async def called_once_a_day():
-        await client.wait_until_ready()
-        date = datetime.date(datetime.now())
-        datem = date.strftime('%y/%m/%d')
-        if datem[3:] in birthdays:
-            name = birthdays[datem[3:]]
-            channel = client.get_channel(target_channel_id)
-            msg = 'Happy Birthday, %s!' % name
-            print(msg)
-            await channel.send(msg)
-
-    @client.command()
-    async def all(ctx):
-        msg = ''
-        for birthday in birthdays:
-            name = birthdays[birthday]
-            msg = msg + name + ' ' + birthday + '\n'
+@client.command()
+async def all(ctx):
+    msg = ''
+    for birthday in birthdays.find({"sid":ctx.guild.id}).sort('birthday',1):
+        name = birthday["name"]
+        msg = msg + name + ' ' + birthday['birthday'] + '\n'
+    if not msg:
+        await ctx.send("No birthdays have been added yet")
+    else:    
         await ctx.send(msg)
 
-    @client.command()
-    async def today(ctx):
-        date = datetime.date(datetime.now())
-        datem = date.strftime('%y/%m/%d')
-        if datem[3:] in birthdays:
-            name = birthdays[datem[3:]]
+@client.command()
+async def here(ctx):
+    await ctx.send('Are you sure you want all birthday messages posted here? Enter y for yes or n for no')
+    #pull in response
+    msg = await client.wait_for('message', check=lambda message: message.author == ctx.author, timeout=30)
+    if msg.content == 'n':
+       await ctx.send('No worries nothing was changed')
+    elif msg.content == 'y':
+        # set up a role check
+        if ctx.message.author.guild_permissions.administrator:
+            birthdays.update_many({"sid":ctx.guild.id}, {"$set":{"cid": ctx.channel.id}})
+            await ctx.send('All Birthday notices will appear here')
+        else:
+            await ctx.send('Only Administrators can use this function')
+    else:
+       await ctx.send('Operation ended. Invalid input')
+   
+@client.command()
+async def today(ctx):
+    date = datetime.date(datetime.now())
+    datem = date.strftime('%y/%m/%d')
+    results = birthdays.find({"birthday":datem[3:], "sid":ctx.guild.id})
+    if results.count() < 1:
+        msg = 'No birthdays today'
+        await ctx.send(msg)
+    else:
+        for birthday in results:
+            name = birthday["name"]
             await ctx.send('Happy Birthday, %s!' % name)
 
-    @client.command()
-    async def thisMonth(ctx):
-        date = datetime.date(datetime.now())
-        datem = date.strftime('%y/%m/%d')
-        month = datem[3:5]
-        found = False
-        for birthday in birthdays:
-            if birthday[:2] == month:
-                found = True
-                name = birthdays[birthday]
-                msg = name + ' ' + birthday
-                await ctx.send(msg)
-            else:
-                continue
-        if found == False:
-            msg = 'No birthdays this month'
-            await ctx.send(msg)
 
-    # make a command to see birthdays for each month
-    @client.command()
-    async def month(ctx, month):
-        found = False
-        month = month.lower()
-        months = dict(january='01',february='02', march='03', april='04', may='05', june='06', july='07', august='08', september='09',october='10',november='11',december='12')
-        for birthday in birthdays:
-            if birthday[:2] == months[month]:
-                found = True
-                name = birthdays[birthday]
-                msg = name + ' ' + birthday
-                await ctx.send(msg)
-        if found == False:
-            msg = 'No birthdays in %s' % month
-            await ctx.send(msg)
-
-    # make a birthday appear using someone's name
-    @client.command(aliases = list(birthdays.values()))
-    async def name(ctx, name):
-        for birthday in birthdays:
-            if name == birthdays[birthday]:
-                await ctx.send(birthday)
-            else:
-                continue
-
-    # add birthdays to dictionary
-    @client.command()
-    async def add(ctx, name, birthday):
-        f.seek(0)
-        birthdays.update({birthday: name})
-        json.dump(birthdays, f)
-        await ctx.send( name + '\'s Birthday added')
-
-    # edit a birthday 
-    @client.command()
-    async def edit(ctx, name, birth):
-        for birthday in birthdays:
-            if name == birthdays[birthday]:
-                birthdays.pop(birthday, None)
-                f.seek(0)
-                birthdays.update({birth: name})
-                json.dump(birthdays, f)
-                await ctx.send('Birthday updated')
-                break
-            else:
-                continue
-
-    # delete birthday function
-    @client.command()
-    async def delete(ctx, name):
-        for birthday in birthdays:
-            if name == birthdays[birthday]:
-                birthdays.pop(birthday, None)
-                await ctx.send('Birthday deleted')
-                break
-            else:
-                continue
-
-    called_once_a_day.start()
+@client.command()
+async def thisMonth(ctx):
+    date = datetime.date(datetime.now())
+    datem = date.strftime('%y/%m/%d')
+    month = str(datem[3:5])
     
-    client.run(token)
+    results = birthdays.find({"month":month, "sid":ctx.guild.id}).sort('birthday',1)
+    if results.count() < 1:
+        msg = 'No birthdays this month'
+        await ctx.send(msg)
+    else:
+        msg = ''
+        for birthday in results:
+            name = birthday["name"]
+            msg = msg + name + ' ' + birthday['birthday'] + '\n'
+        await ctx.send(msg)
+               
+# make a command to see birthdays for each month
+@client.command()
+async def month(ctx, month):
+    month = month.lower()
+    months = dict(january='01',february='02', march='03', april='04', may='05', june='06', july='07', august='08', september='09',october='10',november='11',december='12')
+    results = birthdays.find({"month":months[month], "sid":ctx.guild.id}).sort('birthday',1)
+    if results.count() < 1:
+        msg = 'No birthdays in %s' % month
+        await ctx.send(msg)
+    else:
+        msg = ''
+        for birthday in results:
+                name = birthday["name"]
+                msg = msg + name + ' ' + birthday['birthday'] + '\n'
+        await ctx.send(msg)
+    
+# make a birthday appear using someone's name
+@client.command()
+async def name(ctx, name):
+    results = birthdays.find({"name":name, "sid":ctx.guild.id})
+    if results.count() < 1:
+        msg = 'No birthdays found with that name'
+        await ctx.send(msg)
+    else:
+        for birthday in results:
+            await ctx.send(birthday["birthday"])
+
+def validate(date_text):
+        date_text = '2020/'+ date_text
+        try:
+            datetime.strptime(date_text, '%Y/%m/%d')
+            return True
+        except ValueError:
+            return False
+
+# add birthdays to dictionary
+@client.command()
+async def add(ctx, name, birthday):
+    if len(birthday) < 4:
+        return False
+    # make sure birthday is listed in the right format
+    if validate(birthday) == False:
+        await ctx.send("Incorrect data format, should be MM/DD")
+    else:
+        birthdays.insert_one({
+            "name": name,
+            "birthday": birthday,
+            "month": birthday[:2],
+            "sid": ctx.guild.id,
+            "cid": ctx.channel.id
+            })
+        await ctx.send(name + '\'s Birthday added')
+
+# edit a birthday 
+@client.command()
+async def edit(ctx, name, birth):
+    results = birthdays.find({"name":name, "sid":ctx.guild.id})
+    if results.count() < 1:
+        msg = 'No birthdays found with that name'
+        await ctx.send(msg)
+    elif validate(birth) == False:
+        await ctx.send("Incorrect data format, should be MM/DD")
+    else: 
+        birthdays.update_one({"name":name, "sid":ctx.guild.id}, {"$set":{"birthday":birth, "month":birth[:2]}})
+        await ctx.send('Birthday updated')
+            
+
+# delete birthday function
+@client.command()
+async def delete(ctx, name):
+   results = birthdays.find({"name":name, "sid":ctx.guild.id})
+   if results.count() < 1:
+        msg = 'No birthdays found with that name'
+        await ctx.send(msg)
+   else:
+    birthdays.delete_one({"name":name, "sid":ctx.guild.id})
+    await ctx.send('Birthday deleted')
+
+# delete birthday function
+@client.command()
+async def deleteAll(ctx):
+   #send a message to confirm
+   await ctx.send('Are you sure you want to delete all birthdays? Enter y for yes or n for no')
+   #pull in response
+   msg = await client.wait_for('message', check=lambda message: message.author == ctx.author, timeout=30)
+   if msg.content == 'n':
+       await ctx.send('No worries nothing was deleted')
+   elif msg.content == 'y':
+        # set up a role check
+        if ctx.message.author.guild_permissions.administrator:
+            birthdays.delete_many({"sid":ctx.guild.id})
+            await ctx.send('All Birthday\'s have been deleted')
+   else:
+       await ctx.send('Operation ended. Invalid input')
+
+
+
+
+called_once_a_day.start()
+
+client.run(token)
