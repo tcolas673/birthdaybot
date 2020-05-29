@@ -2,14 +2,14 @@ import os
 import db
 import json
 import discord
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from discord.ext import commands, tasks
 from datetime import datetime
 
 
 client = commands.Bot(command_prefix = 'b!') 
 
-load_dotenv()
+# load_dotenv()
 
 token = os.getenv('TOKEN')
 birthdays = db.connect()
