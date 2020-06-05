@@ -1,33 +1,19 @@
-# birthdayBot
-This Discord bot is a tool to help Discord users keep track of birthdays in their servers. 
+# BirthdayBot
+This Discord bot is a tool to help Discord users keep track of birthdays in their servers. If you like this bot and would like to support me you can
+donate [here]()
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development purposes. 
-
-### Prerequisites
-
-* Python
-* Pip
-* Discord.py 
+Follow the instructions below to invite this bot onto your discord server. 
+You need to be an admin of a server to install and make sure you are logged
+into discord on your browser.
 
 ### Installing
-1. ```git clone https://github.com/tcolas673/birthdaybot.git ```
-2. Start up Command Prompt or Terminal and navigate to this directory: ```cd <clone directory>```
-3. Install Discord.py by running the following command
-```
-# Linux/macOS
-python3 -m pip install -U discord.py
-
-# Windows
-py -3 -m pip install -U discord.py
-```
-4. Invite the bot to your server [(more instructions here)](https://stackoverflow.com/questions/37689289/how-to-join-a-server) and input your Discord bot key in config.json
-5. Type python3 birthdaybot.py in your terminal
+1. Click this [link]()
+2. Select what discord server you want to add the bot too.
 
 ### Using birthdayBot!
 
-Once you have the bot up and running, you can type use the following commands to add,edit,delete, or view someone's birthday.
+Once you have the bot up and running, you can type use the following commands to add, edit, delete, or view someone's birthday.
 
 #### b!add
  ```
@@ -100,3 +86,8 @@ b!thisMonth
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
+### Prerequisites
+
+* Python
+* Mongodb
+* Discord.py 
