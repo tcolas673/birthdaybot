@@ -2,16 +2,6 @@
 This Discord bot is a tool to help Discord users keep track of birthdays in their servers. If you like this bot and would like to support me you can
 donate [here](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=FV3CH35QBDSAJ&currency_code=USD&source=url)
 
-<p>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_donations" />
-<input type="hidden" name="business" value="FV3CH35QBDSAJ" />
-<input type="hidden" name="currency_code" value="USD" />
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-</form>
-</p>
-
 ## Getting Started
 Follow the instructions below to invite this bot onto your discord server. 
 You need to be an admin of a server to install. 
