@@ -56,6 +56,24 @@ async def all(ctx):
         await ctx.send(msg)
 
 @client.command()
+async def help(ctx):
+    embed = discord.Embed(
+            title ='Supported Commands',
+            color = discord.Colour.blue()
+        )
+    embed.add_field(name='b!add', value='b!add name mm/dd will add someone\'s name and birthday to the system.')
+    embed.add_field(name='b!all', value='b!all will list all birthdays in the system.')
+    embed.add_field(name='b!delete', value='b!delete name will remove someone\'s birthday from the system.')
+    embed.add_field(name='b!deleteAll', value='b!deleteAll will remove all birthday\'s added. Only Administrator\'s can run this command.')
+    embed.add_field(name='b!edit', value='b!edit name will allow you to edit a birthday in the system with that corresponding name.')
+    embed.add_field(name='b!help', value='b!help will list all bot commands.')
+    embed.add_field(name='b!here', value='b!here will make bot send all Happy birthday messages in current channel.')
+    embed.add_field(name='b!month', value='b!month monthoftheyear will allow you to view all birthdays for that month.')
+    embed.add_field(name='b!name', value='b!name username will show birthdate of user if they are in the system')
+    embed.add_field(name='b!thisMonth', value='b!thisMonth will allow you to view all birthdays for the current month.')
+    embed.add_field(name='b!today', value='b!today will print a happy birthday message for birthdays on that day if none, it wil print nothing.')
+
+@client.command()
 async def here(ctx):
     await ctx.send('Are you sure you want all birthday messages posted here? Enter y for yes or n for no')
     #pull in response

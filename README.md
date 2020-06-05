@@ -37,6 +37,14 @@ Example: b!delete Test
 Output: Birthday was deleted
 ```
 
+#### b!deleteAll
+ ```
+ b!deleteAll will remove all birthday's added. Only Administrator's can run this command.
+
+Example: b!deleteAll
+Output: All Birthday's have been deleted
+```
+
 #### b!edit
  ```
 b!edit name will allow you to edit a birthday in the system with that corresponding name.
@@ -45,11 +53,42 @@ Example: b!edit test 05/24
 Output: Birthday updated
 ```
 
+#### b!help
+ ```
+ b!help will list all bot commands.
+
+Example: b!help
+```
+
+#### b!here
+ ```
+ b!here will make bot send all Happy birthday messages
+ in corresponding channel.
+
+Example: b!here
+Output: All Happy Birthday notices will appear here
+```
+
 #### b!month
  ```
 b!month monthoftheyear will allow you to view all birthdays for that month.
 
 Example: b!month may 
+```
+
+#### b!name
+ ```
+ b!name username will show birthdate of user if they are in the system
+
+Example: b!name Test
+Output: 04/24
+```
+
+#### b!thisMonth
+ ```
+b!thisMonth will allow you to view all birthdays for the current month.
+
+Example: b!thisMonth
 ```
 
 #### b!today
@@ -60,12 +99,6 @@ Example: b!today
 Output: Happy Birthday Test!
 ```
 
-#### b!thisMonth
- ```
-b!thisMonth will allow you to view all birthdays for the current month.
-
-Example: b!thisMonth
-```
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
