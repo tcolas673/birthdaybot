@@ -72,6 +72,7 @@ async def help(ctx):
     embed.add_field(name='b!name', value='b!name username will show birthdate of user if they are in the system')
     embed.add_field(name='b!thisMonth', value='b!thisMonth will allow you to view all birthdays for the current month.')
     embed.add_field(name='b!today', value='b!today will print a happy birthday message for birthdays on that day if none, it wil print nothing.')
+    await ctx.send(embed=embed)
 
 @client.command()
 async def here(ctx):
