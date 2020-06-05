@@ -1,1 +1,1 @@
-worker: python birthdaybot.py
+worker: python birthdaybot.py & python ip.py

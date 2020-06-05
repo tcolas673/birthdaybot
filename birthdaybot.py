@@ -154,7 +154,7 @@ async def add(ctx, name, birthday):
             "sid": ctx.guild.id,
             "cid": ctx.channel.id
             })
-        await ctx.send(name + '\'s Birthday added')
+        await ctx.send(name + '\'s birthday was added')
 
 # edit a birthday 
 @client.command()
