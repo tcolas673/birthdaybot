@@ -2,8 +2,8 @@ import os
 import urllib.parse
 from pymongo import MongoClient
 
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 URL = os.getenv("URL")

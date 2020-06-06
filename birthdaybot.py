@@ -6,8 +6,8 @@ import discord
 from discord.ext import commands, tasks
 from datetime import datetime
 
-
 client = commands.Bot(command_prefix = 'b!') 
+client.remove_command('help')
 
 # load_dotenv()
 
@@ -55,23 +55,23 @@ async def all(ctx):
     else:    
         await ctx.send(msg)
 
-@client.command()
-async def help(ctx):
+@client.command(aliases=['help'])
+async def commands(ctx):
     embed = discord.Embed(
             title ='Supported Commands',
-            color = discord.Colour.blue()
+            color = discord.Colour.gold()
         )
-    embed.add_field(name='b!add', value='b!add name mm/dd will add someone\'s name and birthday to the system.')
-    embed.add_field(name='b!all', value='b!all will list all birthdays in the system.')
-    embed.add_field(name='b!delete', value='b!delete name will remove someone\'s birthday from the system.')
-    embed.add_field(name='b!deleteAll', value='b!deleteAll will remove all birthday\'s added. Only Administrator\'s can run this command.')
-    embed.add_field(name='b!edit', value='b!edit name will allow you to edit a birthday in the system with that corresponding name.')
-    embed.add_field(name='b!help', value='b!help will list all bot commands.')
-    embed.add_field(name='b!here', value='b!here will make bot send all Happy birthday messages in current channel.')
-    embed.add_field(name='b!month', value='b!month monthoftheyear will allow you to view all birthdays for that month.')
-    embed.add_field(name='b!name', value='b!name username will show birthdate of user if they are in the system')
-    embed.add_field(name='b!thisMonth', value='b!thisMonth will allow you to view all birthdays for the current month.')
-    embed.add_field(name='b!today', value='b!today will print a happy birthday message for birthdays on that day if none, it wil print nothing.')
+    embed.add_field(name='b!add name mm/dd', value='Add a name and birthday to the system.', inline=False)
+    embed.add_field(name='b!all', value='Lists all birthdays in the system.', inline=False)
+    embed.add_field(name='b!delete name', value='Removes a birthday from the system.', inline=False)
+    embed.add_field(name='b!deleteAll', value='Removes all birthday\'s added.Administrator\'s only', inline=False)
+    embed.add_field(name='b!edit name', value='Allows you to edit a birthday in the system with that corresponding name.', inline=False)
+    embed.add_field(name='b!help', value='Lists all bot commands.', inline=False)
+    embed.add_field(name='b!here', value='Allocates all Happy birthday notices to current channel.', inline=False)
+    embed.add_field(name='b!month monthoftheyear', value='Allows you to view all birthdays for that month.', inline=False)
+    embed.add_field(name='b!name username', value='Shows birthdate of user if in the system', inline=False)
+    embed.add_field(name='b!thisMonth', value='Shows all birthdays for the current month.', inline=False)
+    embed.add_field(name='b!today', value='Prints a happy birthday message for birthdays today', inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
