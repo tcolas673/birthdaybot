@@ -8,7 +8,7 @@ Follow the instructions below to invite this bot onto your discord server.
 You need to be an admin of a server to install. 
 
 ### Installing
-1. Click this [![](./add.png)](https://discord.com/api/oauth2/authorize?client_id=701412155853111317&permissions=8&scope=bot)
+1. Click this [link](https://discord.com/api/oauth2/authorize?client_id=701412155853111317&permissions=8&scope=bot)
 2. Select what discord server you want to add the bot to
 
 ### Using birthdayBot!
