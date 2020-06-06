@@ -1,5 +1,6 @@
 import os
 import db
+import ip
 import json
 import discord
 # from dotenv import load_dotenv
@@ -13,7 +14,7 @@ client.remove_command('help')
 
 token = os.getenv('TOKEN')
 birthdays = db.connect()
-
+print(ip.getip())
 
 @client.event
 async def on_ready():
