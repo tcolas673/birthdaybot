@@ -28,6 +28,8 @@ Output: Test's birthday was added
  b!all will list all birthdays in the system.
 
 Example: b!all
+Output: Test 04/24
+        Troy 05/25
 ```
 
 #### b!delete
@@ -58,7 +60,6 @@ Output: Birthday updated
  ```
  b!help will list all bot commands.
 
-Example: b!help
 ```
 
 #### b!here
@@ -75,6 +76,7 @@ Output: All Happy Birthday notices will appear here
 b!month monthoftheyear will allow you to view all birthdays for that month.
 
 Example: b!month may 
+Output: Troy 05/25
 ```
 
 #### b!name
@@ -90,6 +92,7 @@ Output: 04/24
 b!thisMonth will allow you to view all birthdays for the current month.
 
 Example: b!thisMonth
+Output: Test 04/24
 ```
 
 #### b!today
