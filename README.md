@@ -11,7 +11,7 @@ You need to be an admin of a server to install.
 1. Click this [link](https://discord.com/api/oauth2/authorize?client_id=701412155853111317&permissions=8&scope=bot)
 2. Select what discord server you want to add the bot to
 
-### Using birthdayBot!
+### Using BirthdayBot!
 
 Once you have the bot up and running on your server, you can use the following commands to add, edit, delete, or view someone's birthday.
 
