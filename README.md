@@ -1,6 +1,6 @@
 # BirthdayBot
 This Discord bot is a tool to help Discord users keep track of birthdays in their servers. If you like this bot and would like to support me you can
-donate [here](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=FV3CH35QBDSAJ&currency_code=USD&source=url)
+donate here
 [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=FV3CH35QBDSAJ&currency_code=USD&source=url)
 
 ## Getting Started
