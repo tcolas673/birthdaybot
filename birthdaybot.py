@@ -213,6 +213,8 @@ async def deleteAll(ctx):
         if ctx.message.author.guild_permissions.administrator:
             birthdays.delete_many({"sid":ctx.guild.id})
             await ctx.send('All Birthday\'s have been deleted')
+        else: 
+            await ctx.send('Only Administrators can use this function')
    else:
        await ctx.send('Operation ended. Invalid input')
 
