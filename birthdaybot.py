@@ -55,7 +55,7 @@ async def all(ctx):
         await ctx.send(msg)
 
 @client.command(aliases=['help'])
-async def commands(ctx):
+async def command(ctx):
     embed = discord.Embed(
             title ='Supported Commands',
             color = discord.Colour.gold()
